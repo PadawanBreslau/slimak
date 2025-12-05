@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
 
   # development / test dependencies
   spec.add_development_dependency "rspec", "~> 3.0"
-  spec.add_development_dependency "activerecord", "~> 7.0"
+  spec.add_development_dependency "activerecord", "~> 8.0"
   spec.add_development_dependency "sqlite3", ">= 2.0"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "pry"

@@ -69,6 +69,14 @@ t.assignee_name = "Mark"
 t.slug # => "paint-the-wall-critical-mark"
 ```
 
+Generators
+```ruby
+rails generate slimak:add_slug ModelName 
+
+Options: --column=NAME Column to add/store slug (default: slug) --scope=COLUMN_NAME Optional scope column (creates composite unique index)
+```
+
+
 Notes & Next steps
 - For robust concurrency-safe uniqueness you should also enforce a UNIQUE index in the database and handle possible race conditions (e.g., retry on unique constraint violation). Slimak already appends numeric suffixes to avoid collisions, but an index prevents races.
 - You can scope uniqueness via `slug_options scope: :project_id` and add a composite unique index [project_id, slug].
