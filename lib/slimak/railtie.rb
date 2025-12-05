@@ -1,0 +1,14 @@
+# Railtie: auto-include Slimak::Sluggable into ActiveRecord::Base for Rails apps.
+if defined?(Rails)
+  require "rails/railtie"
+
+  module Slimak
+    class Railtie < ::Rails::Railtie
+      initializer "slimak.active_record" do
+        ActiveSupport.on_load(:active_record) do
+          include Slimak::Sluggable
+        end
+      end
+    end
+  end
+end
