@@ -1,6 +1,11 @@
+# frozen_string_literal: true
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'slimak'
+
 Gem::Specification.new do |spec|
   spec.name          = "slimak"
-  spec.version       = Slimak::VERSION rescue "0.1.0"
+  spec.version       = Slimak::VERSION
   spec.summary       = "Multi-column slugs with ActiveRecord persistence & fast lookup"
   spec.description   = "Slimak creates slugs from multiple model attributes (slug_columns) and supports storing them in the DB with uniqueness and fast lookup."
   spec.authors       = ["Stanislaw Zawadzki"]
