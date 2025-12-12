@@ -1,9 +1,8 @@
 require 'spec_helper'
-require 'generators/slimak/add_slug/add_slug_generator'
-require 'pry'
+require 'generators/slimak/add_jsonb_slug/add_jsonb_slug_generator'
 
 # include Rails generator testing helpers
-RSpec.describe Slimak::Generators::AddSlugGenerator, type: :generator do
+RSpec.describe Slimak::Generators::AddJsonbSlugGenerator, type: :generator do
   let(:dest) { File.expand_path('../tmp', __dir__) }
 
   before do
@@ -41,6 +40,8 @@ RSpec.describe Slimak::Generators::AddSlugGenerator, type: :generator do
     expect(migration_content).to match(/class\s+\w+\s+<\s+ActiveRecord::Migration\[?\d+\.\d+\]?/)
     expect(migration_content).to match(/def\s+change/)
     expect(migration_content).to match(/add_column/)
+    expect(migration_content).to match(/jsonb/)
+    expect(migration_content).to match(/default/)
     expect(migration_content).to match(/add_index/)
     expect(migration_content).to match(/slug/)
   end
@@ -62,6 +63,8 @@ RSpec.describe Slimak::Generators::AddSlugGenerator, type: :generator do
     expect(migration_content).to match(/class\s+\w+\s+<\s+ActiveRecord::Migration\[?\d+\.\d+\]?/)
     expect(migration_content).to match(/def\s+change/)
     expect(migration_content).to match(/add_column/)
+    expect(migration_content).to match(/jsonb/)
+    expect(migration_content).to match(/default/)
     expect(migration_content).to match(/add_index/)
     expect(migration_content).to match(/bulbulator/)
   end

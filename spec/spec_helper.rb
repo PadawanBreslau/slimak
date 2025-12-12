@@ -29,6 +29,17 @@ RSpec.configure do |config|
       end
       add_index :tasks, :slug
       add_index :tasks, [:project_id, :slug], unique: true
+
+      create_table :translated_tasks, force: true do |t|
+        t.string  :name
+        t.string  :urgency
+        t.string  :assignee_name
+        t.json  :slug
+        t.integer :project_id
+        t.timestamps null: false
+      end
+      add_index :translated_tasks, :slug, using: :gin
+      add_index :translated_tasks, [:project_id, :slug], unique: true
     end
 
     # define model used in specs
@@ -36,9 +47,15 @@ RSpec.configure do |config|
       include Slimak::Sluggable
       slug_columns :name, :urgency, :assignee_name
     end
+
+    class TranslatedTask < ActiveRecord::Base
+      include Slimak::Sluggable
+      slug_columns :name
+    end
   end
 
   config.before(:each) do
     Task.delete_all
+    TranslatedTask.delete_all
   end
 end

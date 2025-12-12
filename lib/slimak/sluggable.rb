@@ -56,6 +56,13 @@ module Slimak
         where(col => value).first
       end
 
+      def find_by_json_slug(value)
+        col = _slimak_slug_options[:column]
+        
+        binding.pry
+        #TODO
+      end
+
       def find_by_slug!(value)
         find_by_slug(value) or raise ActiveRecord::RecordNotFound, "Couldn't find #{name} with slug=#{value}"
       end
