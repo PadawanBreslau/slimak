@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.description   = "Slimak creates slugs from multiple model attributes (slug_columns) and supports storing them in the DB with uniqueness and fast lookup."
   spec.authors       = ["Stanislaw Zawadzki"]
   spec.email         = ["st.zawadzki@gmail.com"]
-  spec.files         = Dir["lib/**/*.rb", "README.md", "LICENSE", "Rakefile"]
+  spec.files         = Dir["lib/**/*.rb", "lib/**/*.rb.erb"  , "README.md", "LICENSE", "Rakefile"]
   spec.homepage      = ""
   spec.license       = "MIT"
 

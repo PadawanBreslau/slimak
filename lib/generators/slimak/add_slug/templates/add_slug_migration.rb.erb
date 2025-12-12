@@ -1,4 +1,4 @@
-class Add<%= (column_name + "_to_" + file_name.pluralize).camelize %> < ActiveRecord::Migration[<%= migration_version %>]
+class Add<%= (column_name + "_to_" + file_name.pluralize).camelize %> < ActiveRecord::Migration[<%= migration_version_option %>]
   def change
     add_column :<%= file_name.pluralize %>, :<%= column_name %>, :string
     add_index  :<%= file_name.pluralize %>, :<%= column_name %>, unique: true
