@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
   spec.add_runtime_dependency "activesupport", ">= 5.2"
 
   # development / test dependencies
+  spec.add_development_dependency 'railties', '~> 8.0'
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "activerecord", "~> 8.0"
   spec.add_development_dependency "sqlite3", ">= 2.0"

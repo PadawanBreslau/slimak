@@ -4,12 +4,13 @@ require "rails/generators/migration"
 module Slimak
   module Generators
     # Usage:
-    #   rails generate slimak:add_slug ModelName --column=slug --scope=project_id --migration_version=6.1
+    #   rails generate slimak:add_slug ModelName  --force=true  --column=slug --scope=project_id --migration_version=6.1
     class AddSlugGenerator < Rails::Generators::NamedBase
       include Rails::Generators::Migration
 
       source_root File.expand_path("templates", __dir__)
-
+      
+      class_option :force, type: :boolean, default: false, desc: 'Overwrite existing files'
       class_option :column, type: :string, default: "slug", desc: "Column name to store slug"
       class_option :scope, type: :string, default: nil, desc: "Optional scope column name for scoped uniqueness"
       class_option :migration_version, type: :string, default: nil, desc: "Rails migration version to use (e.g. 6.0). Defaults to current."
@@ -29,7 +30,16 @@ module Slimak
       end
 
       def create_initializer_file
-        template "slimak_initializer.rb.erb", "config/initializers/slimak.rb"
+        target = 'config/initializers/slimak.rb'
+        full_target_path = File.join(destination_root, target)
+
+        if File.exist?(full_target_path) && !options[:force]
+          say_status :skip, target, :yellow
+        else
+          remove_file target if File.exist?(full_target_path) && options[:force]
+          template "slimak_initializer.rb.erb", target
+          say_status :create, target, :green
+        end
       end
 
       private
